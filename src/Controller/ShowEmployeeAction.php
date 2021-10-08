@@ -7,6 +7,9 @@ namespace App\Controller;
 use App\Repository\ContactsRepositoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Nelmio\ApiDocBundle\Annotation\Model;
+use OpenApi\Annotations as OA;
+use App\Entity\Contact;
 
 class ShowEmployeeAction extends BaseController
 {
@@ -18,7 +21,20 @@ class ShowEmployeeAction extends BaseController
         $this->contactsRepository = $contactsRepository;
     }
 
-
+    /**
+     * @OA\Response(
+     *     response=200,
+     *     description="Returns the employee contacts",
+     *     @OA\JsonContent(ref=@Model(type=Contact::class)),
+     *     @OA\XmlContent(ref=@Model(type=Contact::class))
+     * )
+     * @OA\Parameter(
+     *     name="output_type",
+     *     in="query",
+     *     description="Output Types [xml, json]",
+     *     @OA\Schema(type="string")
+     * )
+     */
     public function __invoke(Request $request, int $id): Response
     {
 
