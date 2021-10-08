@@ -12,3 +12,14 @@ list_employees:
   path: /api/employees
   methods: GET
   controller: App\Controller\ListEmployeesAction
+
+show_upload_employees:
+  path: /employee/upload
+  methods: GET
+  controller:  App\Controller\ShowUploadEmployeesForm
+
+
+upload_employees:
+  path: /employee/upload
+  methods: POST
+  controller:  App\Controller\UploadEmployeesAction
